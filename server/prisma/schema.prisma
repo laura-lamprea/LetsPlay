@@ -1,0 +1,24 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Game {
+  id      String   @id @default(cuid())
+  country String
+  city    String
+  sport   String
+  address String
+  type    String
+  date    DateTime @default(now())
+  captain String
+  total   Int
+  current Int
+  price   Int
+  picture String?
+}
+

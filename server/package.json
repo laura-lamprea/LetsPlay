@@ -1,0 +1,25 @@
+{
+  "name": "justplay",
+  "version": "1.0.0",
+  "description": "pruebatecnica",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "ts-node-dev index.ts"
+  },
+  "author": "lauraLamprea",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^5.5.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "pg": "^8.11.3",
+    "prisma": "^5.5.0",
+    "ts-node-dev": "^2.0.0",
+    "tslib": "^2.6.2",
+    "typescript": "^5.2.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.20"
+  }
+}

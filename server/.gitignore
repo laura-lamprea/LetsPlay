@@ -1,0 +1,7 @@
+node_modules
+builds/
+test-local-ci.sh
+coverage/
+.DS_Store
+dist/
+.env

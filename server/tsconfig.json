@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "es2016",                                  
+    "module": "commonjs",                               
+    "esModuleInterop": true,                             
+    "forceConsistentCasingInFileNames": true,            
+    "strict": true,                                    
+    "skipLibCheck": true,                               
+    "pretty": true,
+    "baseUrl": ".",
+    "importHelpers": true,
+    "paths": {
+      "@/*": [
+        "./*"
+      ],
+    }
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.js",
+    "src/**/*.json",
+    "knexfile.ts",
+    "index.ts",
+    ".env",
+  ],
+  "exclude": [
+    "node_modules",
+  ]
+}

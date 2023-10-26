@@ -6,7 +6,7 @@ const createGame = async (req: Request, res: Response) => {
     try {
         const insertBody = req.body;
         const gameCreated = await createGameService(insertBody);
-        return res.status(200).send({ message: gameCreated });
+        return res.status(200).send({ message: "success", data: gameCreated });
     } catch (error) {
         const customInstance = error instanceof ErrorHandler;
         const message = customInstance

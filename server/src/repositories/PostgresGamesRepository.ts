@@ -1,12 +1,36 @@
 import { PrismaClient } from '@prisma/client';
-
+import { IGames } from '../interfaces/Game';
 const prisma = new PrismaClient();
 
-// Obtener todos los juegos
 const getAllGames = async () => {
     const games = await prisma.game.findMany();
     return games;
 }
 
+const createGame = async (data: IGames) => {
+    const newGame = await prisma.game.create({
+        data: data,
+    })
+    return newGame;
+}
 
-export { getAllGames };
+const updateGameById = async (game_id: string, data: IGames) => {
+    const updatedGame = await prisma.game.update({
+        where: {
+            id: game_id,
+        },
+        data: data,
+    });
+    return updatedGame;
+}
+
+const deleteGameById = async (game_id: string) => {
+    const deletedGame = await prisma.game.delete({
+        where: {
+            id: game_id,
+        },
+    });
+    return deletedGame;
+}
+
+export { getAllGames, createGame, updateGameById, deleteGameById };

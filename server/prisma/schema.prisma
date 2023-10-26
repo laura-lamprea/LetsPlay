@@ -17,7 +17,7 @@ model Game {
   date    DateTime @default(now())
   captain String
   total   Int
-  current Int
+  current Int?     @default(0)
   price   Int
   picture String?
 }

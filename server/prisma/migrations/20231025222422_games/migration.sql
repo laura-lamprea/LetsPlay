@@ -9,7 +9,7 @@ CREATE TABLE "Game" (
     "date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "captain" TEXT NOT NULL,
     "total" INTEGER NOT NULL,
-    "current" INTEGER NOT NULL,
+    "current" INTEGER DEFAULT 0,
     "price" INTEGER NOT NULL,
     "picture" TEXT,
 

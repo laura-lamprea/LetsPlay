@@ -1,5 +1,5 @@
 import ErrorHandler from "../utils/errorHandler";
-import {getAllGames} from "../repositories/PostgresGamesRepository";
+import { getAllGames } from "../repositories/PostgresGamesRepository";
 
 const GetAllGames = async () => {
   try {

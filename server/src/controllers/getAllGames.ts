@@ -7,7 +7,7 @@ const getAllGames = async (req: Request, res: Response) => {
         const games = await getAllGamesService();
         if (games.length === 0)
             throw new ErrorHandler("ERROR_GAMES_NOT_FOUND", 404);
-        return res.status(200).send({ message: games });
+        return res.status(200).send({ message: "success", data: games });
     } catch (error) {
         const customInstance = error instanceof ErrorHandler;
         const message = customInstance

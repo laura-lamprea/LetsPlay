@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import AppRouter from "./routes/AppRouter.js";
-// import { getUserByEmail } from "./redux/actionsRedux/auth.js";
+import { GetAllGames } from "./redux/actions/GetAllGames.js";
 
 const App = () => {
 	const [isLoading, setIsLoading] = useState(true);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		// dispatch(getUserByEmail(payload)).then(() => setIsLoading(false));
-		setIsLoading(false);
-	}, []);
+		dispatch(GetAllGames()).then(() => setIsLoading(false));
+	}, [dispatch]);
 
 	return !isLoading ? <AppRouter /> : null;
 };

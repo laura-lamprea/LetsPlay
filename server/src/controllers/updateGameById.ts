@@ -9,7 +9,7 @@ const updateGameById = async (req: Request, res: Response) => {
         const gameUpdated = await updateGameService(game_id as string, updateBody);
         if (!gameUpdated)
             throw new ErrorHandler("ERROR_GAME_BY_ID_NOT_FOUND", 404);
-        return res.status(200).send({ message: gameUpdated });
+        return res.status(200).send({ message: "success", data: gameUpdated });
     } catch (error) {
         const customInstance = error instanceof ErrorHandler;
         const message = customInstance

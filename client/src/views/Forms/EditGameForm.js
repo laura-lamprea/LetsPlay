@@ -7,23 +7,33 @@ import useHandleGame from "../../hooks/useHandleGame";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
 
+
 const EditGameForm = ({ initial }) => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const [alert, setAlert] = useState(null);
 	const { ObtainAllGames } = useHandleGame();
+	const formatDate = (date) => {
+		const formattedDate = new Date(date);
+		return formattedDate.toISOString();
+	};
+
 	const [form, setForm] = useState({
 		country: initial.country,
 		city: initial.city,
 		sport: initial.sport,
 		address: initial.address,
 		type: initial.type,
-		date: initial.date,
+		// date: initial.date,
+		//date: formatDate(initial.date),
+		date:initial.date,
 		captain: initial.captain,
 		total: initial.total,
 		price: initial.price,
 		picture: initial.picture,
 	});
+
+	console.log(form.date.split(".",1))
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -33,6 +43,7 @@ const EditGameForm = ({ initial }) => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const validate = isValidated();
+		console.log(validate);
 		if (validate) {
 			const formattedDate = moment(form.date).format("YYYY-MM-DDTHH:mm:ssZ");
 			const formData = {
@@ -161,8 +172,8 @@ const EditGameForm = ({ initial }) => {
 					name="date"
 					id="date"
 					type="datetime-local"
-					format="YYYY-MM-DDTHH:mm:ssZ"
-					value={form.date}
+					format="YYYY-MM-DDTHH:mm:ss.SSS"
+					value={form.date.split(".",1)}
 					onChange={handleChange}
 					size="small"
 				/>
@@ -221,6 +232,7 @@ const EditGameForm = ({ initial }) => {
 				>
 					SAVE
 				</Button>
+				{alert && <Alert severity={alert.type}>{alert.message}</Alert>}
 			</Box>
 		</div>
 	);

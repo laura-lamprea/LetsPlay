@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "ts-node-dev index.ts"
+    "dev": "ts-node-dev index.ts",
+    "build": "npx prisma migrate dev && tsc --project tsconfig.json",
+    "start": "ts-node index.js"
   },
   "author": "lauraLamprea",
   "license": "ISC",

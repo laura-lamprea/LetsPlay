@@ -33,4 +33,13 @@ const deleteGameById = async (game_id: string) => {
     return deletedGame;
 }
 
-export { getAllGames, createGame, updateGameById, deleteGameById };
+const getGameById = async (game_id: string) => {
+    const game = await prisma.game.findUnique({
+        where: {
+            id: game_id,
+        },
+    });
+    return game;
+}
+
+export { getAllGames, createGame, updateGameById, deleteGameById, getGameById };

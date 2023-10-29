@@ -1,11 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { deleteGame } from "../requests/games";
+import { getGame } from "../requests/games";
 
-export const DeleteGame = createAsyncThunk(
-  "useDashboard/DeleteGame",
+export const GetGame = createAsyncThunk(
+  "useDashboard/GetGame",
   async (game_id, { rejectWithValue }) => {
     try {
-      const data = await deleteGame(game_id);
+      const data = await getGame(game_id);
       return data.data.data;
     } catch (error) {
       if (error.response) {

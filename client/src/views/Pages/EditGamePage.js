@@ -1,18 +1,19 @@
 import React from "react";
-import CreateGameForm from "../Forms/CreateGameForm";
+import EditGameForm from "../Forms/EditGameForm";
 import BottomBar from "../../components/BottomBar";
+import { useSelector } from "react-redux";
 
-const CreateGamePage = () => {
+const EditGamePage = () => {
+	const { game } = useSelector((state) => state.useDashboard);
 	return (
 		<div style={customStyle}>
-			{/* <div className="flex shadow-lg p-7 m-8"> */}
-			<CreateGameForm />
+			<EditGameForm initial={game} />
 			<BottomBar />
 		</div>
 	);
 };
 
-export default CreateGamePage;
+export default EditGamePage;
 
 const customStyle = {
 	display: "flex",
@@ -20,3 +21,4 @@ const customStyle = {
 	justifyContent: "center",
 	marginTop: "30px",
 };
+

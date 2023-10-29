@@ -9,3 +9,6 @@ export const updateGame = (game_id, data) =>
 export const deleteGame = (game_id) => {
 	return axios.delete("/", { params: { game_id } });
 };
+export const getGame = (game_id) => {
+	return axios.get("/game", { params: { game_id } });
+};

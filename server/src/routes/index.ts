@@ -6,6 +6,7 @@ const getAllGames = require("../controllers/getAllGames")
 const createGame = require("../controllers/createGame")
 const updateGameById = require("../controllers/updateGameById")
 const deleteGameById = require("../controllers/deleteGameById")
+const getGameById = require("../controllers/getGameById")
 //middleware
 const validatePostGame = require("../middlewares/postSchemaMiddleware")
 const validatePatchGame = require("../middlewares/patchSchemaMiddleware")
@@ -15,5 +16,6 @@ router.get('/', getAllGames)
 router.post('/', validatePostGame, createGame)
 router.patch('/', validatePatchGame, updateGameById)
 router.delete('/', validateDeleteGame, deleteGameById)
+router.get('/game', getGameById)
 
 export default router;

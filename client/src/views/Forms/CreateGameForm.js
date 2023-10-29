@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Button, TextField, Box } from "@mui/material";
+import { Button, TextField, Box, Alert } from "@mui/material";
 import { CreateGame } from "../../redux/actions/CreateGame";
-import { useNavigate } from "react-router-dom";
 import Dropdown from "../../components/Dropdown";
 import moment from "moment";
 import useHandleGame from "../../hooks/useHandleGame";
 
 const CreateGameForm = () => {
 	const dispatch = useDispatch();
-	const navigate = useNavigate();
+	const [alert, setAlert] = useState(null);
 	const { ObtainAllGames } = useHandleGame();
-	const [form, setForm] = useState({
+	const initForm = {
 		country: "",
 		city: "",
 		sport: "",
@@ -22,7 +21,8 @@ const CreateGameForm = () => {
 		total: "",
 		price: "",
 		picture: "",
-	});
+	};
+	const [form, setForm] = useState(initForm);
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -31,15 +31,70 @@ const CreateGameForm = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const formattedDate = moment(form.date).format("YYYY-MM-DDTHH:mm:ssZ");
-		const formData = {
-			...form,
-			date: formattedDate,
-			total: Number(form.total),
-			price: Number(form.price),
-		};
-		dispatch(CreateGame(formData));
-		ObtainAllGames();
+		const validate = isValidated();
+		if (validate) {
+			const formattedDate = moment(form.date).format("YYYY-MM-DDTHH:mm:ssZ");
+			const formData = {
+				...form,
+				date: formattedDate,
+				total: Number(form.total),
+				price: Number(form.price),
+			};
+			dispatch(CreateGame(formData))
+				.then(() => {
+					setAlert({
+						type: "success",
+						message: "Created successfully!",
+					});
+					ObtainAllGames();
+					setForm(initForm);
+					setTimeout(() => {
+						setAlert(null);
+					}, 2000);
+				})
+				.catch(() => {
+					setAlert({ type: "error", message: "Error creating event." });
+				});
+		}
+	};
+
+	const isValidated = () => {
+		const errors = {};
+		if (form.country === "") errors.country = "Country cannot be empty";
+		if (form.city === "") errors.city = "City cannot be empty";
+		if (form.sport === "") errors.sport = "Sport cannot be empty";
+		if (form.address === "") errors.address = "Address cannot be empty";
+		if (form.type === "") errors.type = "Type cannot be empty";
+		if (form.date === "") errors.date = "Date cannot be empty";
+		if (form.captain === "") errors.captain = "Captain cannot be empty";
+		if (
+			form.captain !== "" &&
+			(form.captain.length < 3 || form.captain.length > 20)
+		)
+			errors.captain = "Captain's name must be valid, between 3-20 characters";
+
+		const isNumeric = (value) => !isNaN(value) && isFinite(value);
+		if (form.total === "" || !isNumeric(Number(form.total)))
+			errors.total = "Total members cannot be empty and must be a number";
+		if (form.price === "" || !isNumeric(Number(form.price)))
+			errors.price = "Price cannot be empty and must be a number";
+
+		const urlRegex =
+			/^(https?:\/\/)?[a-z0-9-]+(\.[a-z0-9-]+)+(:\d+)?(\/\S*)?\.(jpg|jpeg|png|gif)$/;
+
+		if (form.picture !== "" && !urlRegex.test(form.picture))
+			errors.date = "Image url must be valid";
+
+		for (const error in errors) {
+			if (errors.hasOwnProperty(error)) {
+				setAlert({
+					type: "warning",
+					message: errors[error],
+				});
+				return false;
+			}
+		}
+		return true;
 	};
 
 	return (
@@ -161,6 +216,7 @@ const CreateGameForm = () => {
 				>
 					Create
 				</Button>
+				{alert && <Alert severity={alert.type}>{alert.message}</Alert>}
 			</Box>
 		</div>
 	);

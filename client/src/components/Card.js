@@ -7,7 +7,7 @@ import EditButton from "./EditButton";
 
 const CardGame = ({ game }) => {
 	return (
-		<div className="grid grid-cols-1 bg-white rounded-xl m-4">
+		<div className="grid grid-cols-1 bg-white rounded-xl m-3">
 			<img
 				src={game.picture || FieldImg}
 				alt="Imagen de la tarjeta"
@@ -29,7 +29,7 @@ const CardGame = ({ game }) => {
 					</p>
 				</div>
 				<p className="text-xs">with {game.captain}</p>
-				<div className="md:flex justify-between">
+				<div className="flex justify-between mt-3">
 					<DeleteButton game_id={game.id} />
 					<EditButton game_id={game.id} />
 				</div>

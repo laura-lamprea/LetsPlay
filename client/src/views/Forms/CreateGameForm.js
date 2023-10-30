@@ -178,7 +178,7 @@ const CreateGameForm = () => {
 					required
 					fullWidth
 					name="total"
-					label="Total"
+					label="Numbers of players"
 					id="total"
 					type="number"
 					value={form.total}
@@ -190,7 +190,7 @@ const CreateGameForm = () => {
 					required
 					fullWidth
 					name="price"
-					label="price"
+					label="Price"
 					id="price"
 					type="number"
 					value={form.price}

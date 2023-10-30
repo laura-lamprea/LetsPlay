@@ -27,7 +27,7 @@ export default function SearchAppBar() {
 						component="div"
 						sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
 					>
-						Just Play
+						Let's play
 					</Typography>
 					<Search />
 				</Toolbar>

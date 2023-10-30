@@ -18,7 +18,6 @@ export default function SearchAppBar() {
 		e.preventDefault();
 		dispatch(Searching(search));
 		setSearch("");
-		console.log("handleSubmit");
 	};
 
 	// onChange={(e) => handleInputChange(e)}

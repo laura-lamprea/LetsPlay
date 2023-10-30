@@ -6,7 +6,7 @@ const Dropdown = ({ name, value, type, onChange, style }) => {
 	const [options, setOptions] = useState([]);
 	useEffect(() => {
 		setOptions(optionsMock[type] || []);
-	}, []);
+	}, [type]);
 	return (
 		<Select
 			required
@@ -16,8 +16,8 @@ const Dropdown = ({ name, value, type, onChange, style }) => {
 			value={value}
 			onChange={onChange}
 			autoComplete="off"
-			placeholder="Select a country"
-			displayEmpty={false}
+			placeholder={`Select ${name}`}
+			displayEmpty={true}
 			style={{ marginTop: "9px", ...style }}
 		>
 			<MenuItem value="" disabled>
